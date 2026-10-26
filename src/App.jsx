@@ -1,6 +1,6 @@
 import './App.css'
-import { useState } from "react";
-
+import { useState, useRef} from "react";
+import Profile from './components/Profile';
 function App() {
   let [number, setNumber] = useState(0);
 
@@ -8,20 +8,31 @@ function App() {
     setNumber(number - 1);
   }
 
-  // function increaseCount(){
-  //   setNumber(number + 1);
-  // }
+
 
   function increaseCount(){
-    setNumber((prev1) => prev1 + 1);
-    setNumber((prev2) => prev2 + 1);
-    setNumber((prev3) => prev3 + 1);
     setNumber((n) => n + 1);
+    inputRef.current.focus();
+    
   }
-
   function setZero(){
     setNumber(number - number);
   }
+
+  const inputRef = useRef(null);
+  function checkRef() {
+    console.log(inputRef.current.value);
+  }
+
+
+const alex = {
+  userName: "Alex Johnson",
+  occupation: "Frontend Developer",
+  email: "alex.johnson@exampole.com",
+  location: "San Francisco, CA",
+  skills: "JavaScript, React, HTML",
+}
+
 
   return (
     <>
@@ -30,7 +41,10 @@ function App() {
         <button onClick={decreaseCount}> Decrease</button>
         <button onClick={increaseCount}> Increase</button>
         <button onClick={setZero}>Reset</button>
+        <input ref={inputRef} onChange={checkRef} type="text"/>
+        <Profile {...alex}/>
       </div>
+      
     </>
   );
 }
