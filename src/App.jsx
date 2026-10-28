@@ -1,6 +1,8 @@
 import './App.css'
-import { useState, useRef} from "react";
+import { useState, useRef } from "react";
 import Profile from './components/Profile';
+import { PhoneProvider } from './store/PhoneContext';
+
 function App() {
   let [number, setNumber] = useState(0);
 
@@ -8,13 +10,11 @@ function App() {
     setNumber(number - 1);
   }
 
-
-
   function increaseCount(){
     setNumber((n) => n + 1);
     inputRef.current.focus();
-    
   }
+
   function setZero(){
     setNumber(number - number);
   }
@@ -24,18 +24,16 @@ function App() {
     console.log(inputRef.current.value);
   }
 
-
-const alex = {
-  userName: "Alex Johnson",
-  occupation: "Frontend Developer",
-  email: "alex.johnson@exampole.com",
-  location: "San Francisco, CA",
-  skills: "JavaScript, React, HTML",
-}
-
+  const alex = {
+    userName: "Alex Johnson",
+    occupation: "Frontend Developer",
+    email: "alex.johnson@exampole.com",
+    location: "San Francisco, CA",
+    skills: "JavaScript, React, HTML",
+  }
 
   return (
-    <>
+    <PhoneProvider>
       <div id="center">
         <p>Count Number: {number}</p>
         <button onClick={decreaseCount}> Decrease</button>
@@ -44,8 +42,7 @@ const alex = {
         <input ref={inputRef} onChange={checkRef} type="text"/>
         <Profile {...alex}/>
       </div>
-      
-    </>
+    </PhoneProvider>
   );
 }
 

@@ -15,7 +15,7 @@ function Profile({ userName, occupation, email, location, skills }) {
         location={location}
         skills={skills} />
       </table>
-      <BtnLike linked={liked} onToggle={setLiked}/>
+      <BtnLike liked={liked} onToggle={setLiked}/>
     </article>
   );
 }
